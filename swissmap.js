@@ -1,5 +1,7 @@
 var query = decodeURIComponent(window.location.href.split('?')[1])
-console.log(query)
+if(query == 'undefined') {
+	location.href= location.href + '?lerchenstrasse 79 4059 basel 2701 basel ch bs'	
+}
 
 function loadFeature(res){
 		console.log(res)
@@ -8,7 +10,15 @@ function loadFeature(res){
 			jsonp : "callback",
 			dataType : "jsonp",
 			success : function(response) {
-				console.log(response.feature.geometry);
+				var geom = response.feature.geometry;
+				console.log(geom);
+				var wgs = CH2WGS(geom.y,geom.x,0)
+				console.log(wgs)
+				var coords = [wgs.B, wgs.L]
+				map.setView(coords, 15);
+				console.log(res.label)
+				L.marker(coords).addTo(map)
+				.bindPopup(res.label).openPopup();
 			}
 		});	
 }
