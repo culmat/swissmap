@@ -1,2 +1,1 @@
-swissmap
-========
+http://culmat.github.io/swissmap
