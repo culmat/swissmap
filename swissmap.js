@@ -1,7 +1,3 @@
-var query = decodeURIComponent(window.location.href.split('?')[1])
-if(query == 'undefined') {
-	location.href= location.href + '?lerchenstrasse 79 4059 basel 2701 basel ch bs'	
-}
 
 function loadFeature(res){
 		$.ajax({
@@ -19,10 +15,7 @@ function loadFeature(res){
 		});	
 }
 
-
-
-$(function() {
-	
+function findFeature(query, callback){
 	$.ajax({
 		url : "http://api3.geo.admin.ch/rest/services/api/SearchServer",
 		jsonp : "callback",
@@ -33,9 +26,20 @@ $(function() {
 			type : "locations"
 		},
 		success : function(response) {
-			loadFeature(response.results[0].attrs);
+			callback(response);
 		}
 	});
+}
+
+
+$(function() {
+	var query = decodeURIComponent(window.location.href.split('?')[1])
+	if(query == 'undefined') {
+		location.href= location.href + '?lerchenstrasse 79 4059 basel 2701 basel ch bs'	
+	}
+	findFeature(query, function(response){
+		loadFeature(response.results[0].attrs);
+	})
 	
 });
 
