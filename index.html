@@ -14,13 +14,6 @@
 <div id="map" style="width: 100%; height: 100%;"></div>
 
 	<script>
-		function values(o){
-			var vals = [];
-			for(var key in o){
-			    vals.push(o[key]);
-			}
-			return vals;
-		}
 		var layers = {
 			mapbox : L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
 				id: 'examples.map-i875mjb7'
@@ -48,12 +41,12 @@
 			roadtrippers : L.tileLayer('https://{s}.tiles.mapbox.com/v3/roadtrippers.ijjip7cb/{z}/{x}/{y}.png', {
 				subdomains : ['a', 'b', 'c', 'd']
 			})
-		}
+		};
 		
 		var map = L.map('map',{
 			attributionControl: false,
 			layers: [layers.mapbox]
-		})
+		});
 		
 		L.control.layers(layers).addTo(map);
 		
