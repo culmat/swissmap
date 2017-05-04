@@ -4,24 +4,31 @@
 <meta charset="UTF-8">
 <title>swissmap</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="jquery-2.1.1.min.js"></script>
-<link rel="stylesheet" href="leaflet/leaflet.css" />
-<script src="leaflet/leaflet.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
+	integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
+	crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+	integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+	crossorigin=""></script>
 <script src="swissmap.js"></script>
 <script src="trafo.js"></script>
 </head>
 <body style="margin: 0px; width: 100%; height: 100%;">
-<div id="map" style="width: 100%; height: 100%;"></div>
+	<div id="map" style="width: 100%; height: 100%;"></div>
 
 	<script>
 		var layers = {
 			osm : L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			}),
 			here_normal_day : L.tileLayer('http://{s}.base.maps.cit.api.here.com/maptile/2.1/maptile/newest/normal.day/{z}/{x}/{y}/256/png8?app_id=EMIFCbqDaXQJXQebW7es&app_code=IHi5R6HsGtGHy76-bY6lYQ', {
-				subdomains : ['1', '2', '3', '4']
+				subdomains : [ '1', '2', '3', '4' ]
 			}),
 			here_hybrid_day : L.tileLayer('http://{s}.aerial.maps.cit.api.here.com/maptile/2.1/maptile/newest/hybrid.day/{z}/{x}/{y}/256/png8?app_id=EMIFCbqDaXQJXQebW7es&app_code=IHi5R6HsGtGHy76-bY6lYQ', {
-				subdomains : ['1', '2', '3', '4']
+				subdomains : [ '1', '2', '3', '4' ]
 			}),
 			esri_satellite : L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 			}),
@@ -30,27 +37,30 @@
 			open_map_surfer_road : L.tileLayer('http://openmapsurfer.uni-hd.de/tiles/roads/x={x}&y={y}&z={z}', {
 			}),
 			foursqare : L.tileLayer('https://{s}.tiles.mapbox.com/v3/foursquare.m3elv7vi/{z}/{x}/{y}.png', {
-				subdomains : ['a', 'b', 'c', 'd']
+				subdomains : [ 'a', 'b', 'c', 'd' ]
 			}),
 			roadtrippers : L.tileLayer('https://{s}.tiles.mapbox.com/v3/roadtrippers.ijjip7cb/{z}/{x}/{y}.png', {
-				subdomains : ['a', 'b', 'c', 'd']
+				subdomains : [ 'a', 'b', 'c', 'd' ]
 			})
 		};
-		
-		var map = L.map('map',{
-			attributionControl: false,
-			layers: [layers.osm]
+	
+		var map = L.map('map', {
+			attributionControl : false,
+			layers : [ layers.osm ]
 		});
-		
+	
 		L.control.layers(layers).addTo(map);
-		
-		$(function(){
-		    $('#map').css({'height':($(window).height())+'px'});
-		    $(window).resize(function(){
-		    	$('#map').css({'height':($(window).height())+'px'});
-		    })          
+	
+		$(function() {
+			$('#map').css({
+				'height' : ($(window).height()) + 'px'
+			});
+			$(window).resize(function() {
+				$('#map').css({
+					'height' : ($(window).height()) + 'px'
+				});
+			})
 		});
-
 	</script>
 
 </body>
